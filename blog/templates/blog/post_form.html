@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="ko-kr">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+        
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        
+    </head>
+    <body>
+    <!-- CSS only -->
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <div class="container">
+            <!-- Single Content -->
+            <div id="content" class="site-content center-relative">
+                <div class="single-post-wrapper content-1070 center-relative">
+
+                    <article class="center-relative">
+                        <h2>새 글 작성하기</h2>
+                        {% load widget_tweaks %}
+                        <form action="" method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {% for field in form.visible_fields %}
+                            <div class="form-group">
+                                <label for={{field.id_for_label}}>{{field.label}}</label>
+                                {{field|add_class:'form-control'}}
+                                {% for error in field.errors %}
+                                <span class="help-block">{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                            <input type="submit" value="작성 완료">
+                        </form>
+                        <div class="clearfix"></div>
+                    </article>
+                </div>
+            </div>
+        </div>   
+
+        
+    </body>
+</html>
+
